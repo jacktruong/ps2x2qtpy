@@ -27,11 +27,10 @@
 #include "bsp/board.h"
 #include "tusb.h"
 
-#define KBCLK 11
-#define KBDAT 12
-#define LVPWR 13
-#define MSCLK 14
-#define MSDAT 15
+#define KBCLK 4
+#define KBDAT 3
+#define MSCLK 5
+#define MSDAT 6
 
 uint8_t const led2ps2[] = { 0, 4, 1, 5, 2, 6, 3, 7 };
 uint8_t const mod2ps2[] = { 0x14, 0x12, 0x11, 0x1f, 0x14, 0x59, 0x11, 0x27 };
@@ -594,9 +593,6 @@ void main() {
   gpio_init(KBDAT);
   gpio_init(MSCLK);
   gpio_init(MSDAT);
-  gpio_init(LVPWR);
-  gpio_set_dir(LVPWR, GPIO_OUT);
-  gpio_put(LVPWR, 1);
   
   gpio_set_irq_enabled_with_callback(KBCLK, GPIO_IRQ_EDGE_RISE, true, &irq_callback);
   gpio_set_irq_enabled_with_callback(MSCLK, GPIO_IRQ_EDGE_RISE, true, &irq_callback);
